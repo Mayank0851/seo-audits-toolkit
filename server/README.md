@@ -1,6 +1,7 @@
 ## Introduction
 
 Useful endpoints:
+
 - https://localhost:8000/admin -> Django Admin framework
 - https://localhost:8000/ -> API REST framework
 
@@ -8,8 +9,7 @@ Useful endpoints:
 
 - Redis-server running
 
-
-### Django 
+### Django
 
 ```Bash
 cd osat
@@ -17,10 +17,11 @@ pip3 install -r requirements.txt
 pip3 install celery
 ```
 
-### Database 
+### Database
 
 Go to `osat/settings.py`
-Change the values you need in 
+Change the values you need in
+
 ```Python
 DATABASES = {
     'default': {
@@ -38,10 +39,9 @@ DATABASES = {
 
 **You need to have a Redis server running on your machine.**
 
-
 If you want to run the project.
 
-- `python manage.py migrate` 
+- `python manage.py migrate`
 - `python manage.py createsuperuser`
 - `python manage.py runserver`
 
@@ -56,8 +56,7 @@ And in another terminal run:
 If you make a change to a model simply run
 
 - `python3 manage.py makemigrations`
-- `python3 manage.py migrate` 
-
+- `python3 manage.py migrate`
 
 ### Creating a new plugin
 
@@ -74,17 +73,23 @@ INSTALLED_APPS = [
 ```
 
 Copy and modify the code from extractor to help you start:
+
 - admin.py -> Change the model
 - serializers -> Adapt the create method with your celery task
 - tasks -> Modify to suit your needs
 - Views -> Change the filter and ordering fields
 
 Then you need to add your app to `osat/urls.py` ->
+
 ```Python
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'api/extractor', ExtractorViewSet)
 ### Add your root here
-```
 
+###Troubleshooting
+Network Error Issues
+If you encounter network-related errors, here are some solutions to try:
+
+```

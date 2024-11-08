@@ -1,5 +1,5 @@
 ---
-version: "3.8"
+#version: "3.8"
 services:
 
   server:
@@ -174,17 +174,23 @@ services:
     networks:
     - internal    
     volumes:
-    - redis-data:/data
-    - redis-logs:${REDIS_LOG_PREFIX_PATH}
+        - redis-data:/data
+        - C:/Users/THIS/OneDrive/Desktop/seo-audits-toolkit/shared/logs/redis:/var/log/redis
+
+
+    # - redis-logs:${REDIS_LOG_PREFIX_PATH}  # This line is commented out, you can remove it if unnecessary
+    environment:
+      - REDIS_LOG_FILE=/var/log/redis/redis.log
+      - REDIS_MEMORY_MAX=${REDIS_MEMORY_MAX}
+
     labels:
     - "org.label-schema.group=storage"
     - "traefik.enable=false"
     command:
-    - "redis-server"
-    - "--maxmemory ${REDIS_MEMORY_MAX}"
-    - "--maxmemory-policy allkeys-lru"
-    - "--logfile ${REDIS_LOG_FILE}"
-    restart: unless-stopped
+      - "redis-server"
+      - "--maxmemory ${REDIS_MEMORY_MAX}"
+      - "--maxmemory-policy allkeys-lru"
+      - "--logfile /var/log/redis/redis.log"
 
 networks:
   internal:
