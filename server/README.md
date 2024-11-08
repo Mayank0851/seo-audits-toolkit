@@ -90,7 +90,7 @@ router.register(r'api/extractor', ExtractorViewSet)
 
 ## Troubleshooting Network Errors
 
-If you are encountering network errors, particularly during login, follow these steps to resolve the issue:
+If you are facing network errors, particularly during login, follow these steps to resolve the issue:
 
 ### 1. Check Docker Network Configuration
 
